@@ -1,0 +1,33 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:2.2.0'
+    compile 'commons-io:commons-io:2.5'
+    compile 'org.json:json:20080701'
+    compile 'org.apache.poi:poi:3.10-FINAL'
+    compile 'org.apache.poi:poi-ooxml:3.10-FINAL'
+    compile 'com.sun.mail:javax.mail:1.6.1'
+    compile 'net.openhft:compiler:2.3.0'
+}
+
+group = "com.richtech.packplugin"
+version = '1.0.0'
+
+uploadArchives{
+    repositories {
+        mavenDeployer{
+            repository(url:uri('../repo'))
+        }
+    }
+}

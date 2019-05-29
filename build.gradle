@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url uri('/repo') }
+//      mac不能要前面的／
+        maven { url uri('repo') }
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.6'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.1.1"
+        classpath 'com.richtech.packplugin:packplugin:1.0.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url uri('/repo') }
+        maven { url uri('repo') }
+
+    }
+
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'       //SNAPSHOT版本缓存更新间隔
+//    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'       //+号(dynamic)版本缓存更新间隔
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
